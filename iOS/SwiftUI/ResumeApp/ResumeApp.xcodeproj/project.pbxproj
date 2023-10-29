@@ -12,6 +12,7 @@
 		7DA45BA82AEDAB60004C0657 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA45BA72AEDAB60004C0657 /* Assets.xcassets */; };
 		7DA45BAC2AEDAB60004C0657 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA45BAB2AEDAB60004C0657 /* Preview Assets.xcassets */; };
 		7DA45BB42AEEEBC3004C0657 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7DA45BB22AEEEBC3004C0657 /* Main.xcdatamodeld */; };
+		7DA45BB62AEEEE8A004C0657 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA45BB52AEEEE8A004C0657 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7DA45BA92AEDAB60004C0657 /* ResumeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ResumeApp.entitlements; sourceTree = "<group>"; };
 		7DA45BAB2AEDAB60004C0657 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7DA45BB32AEEEBC3004C0657 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
+		7DA45BB52AEEEE8A004C0657 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				7DA45BA32AEDAB5F004C0657 /* ResumeAppApp.swift */,
 				7DA45BA52AEDAB5F004C0657 /* ContentView.swift */,
+				7DA45BB52AEEEE8A004C0657 /* DataController.swift */,
 				7DA45BB22AEEEBC3004C0657 /* Main.xcdatamodeld */,
 				7DA45BA72AEDAB60004C0657 /* Assets.xcassets */,
 				7DA45BA92AEDAB60004C0657 /* ResumeApp.entitlements */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA45BB42AEEEBC3004C0657 /* Main.xcdatamodeld in Sources */,
+				7DA45BB62AEEEE8A004C0657 /* DataController.swift in Sources */,
 				7DA45BA62AEDAB5F004C0657 /* ContentView.swift in Sources */,
 				7DA45BA42AEDAB5F004C0657 /* ResumeAppApp.swift in Sources */,
 			);
