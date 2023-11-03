@@ -24,7 +24,13 @@ class DataController: ObservableObject {
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
-        
+
+        container.viewContext.automaticallyMergesChangesFromParent = true // for cloudkit
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+        container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey) // announce when changes are happening
+        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreDhanged)
+
         container.loadPersistentStores { storeDescription, error in
             if let error {
                 fatalError("Fatal error loading data store: \(error.localizedDescription)")
@@ -32,6 +38,10 @@ class DataController: ObservableObject {
         }
     }
     
+    func remoteStoreDhanged(_ notification: Notification) {
+        objectWillChange.send()
+    }
+
     func createSampleData() {
         let viewContext = container.viewContext
         
