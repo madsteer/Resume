@@ -10,7 +10,8 @@ import SwiftUI
 @main
 struct ResumeAppApp: App {
     @State var dataController = DataController()
-    
+    @Environment(\.scenePhase) var scenePhase
+
     var body: some Scene {
         WindowGroup {
             NavigationSplitView {
@@ -22,6 +23,11 @@ struct ResumeAppApp: App {
             }
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
+            .onChange(of: scenePhase) { phase in
+                if phase != .active {
+                    dataController.save()
+                }
+            }
         }
     }
 }
