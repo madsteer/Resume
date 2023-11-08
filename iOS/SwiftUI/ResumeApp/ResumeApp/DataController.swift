@@ -63,7 +63,7 @@ class DataController: ObservableObject {
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
         container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey) // announce when changes are happening
-        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreDhanged)
+        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanged)
 
         container.loadPersistentStores { storeDescription, error in
             if let error {
@@ -72,7 +72,7 @@ class DataController: ObservableObject {
         }
     }
     
-    func remoteStoreDhanged(_ notification: Notification) {
+    func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
 
@@ -108,10 +108,8 @@ class DataController: ObservableObject {
         saveTask?.cancel()
 
         saveTask = Task { @MainActor in
-            print("Queuing save")
             try await Task.sleep(for: .seconds(3))
             save()
-            print("Saved")
         }
     }
 
@@ -146,9 +144,9 @@ class DataController: ObservableObject {
         let allTags = (try? container.viewContext.fetch(request)) ?? []
 
         let allTagsSet = Set(allTags)
-        let differeent = allTagsSet.symmetricDifference(issue.issueTags)
+        let difference = allTagsSet.symmetricDifference(issue.issueTags)
 
-        return differeent.sorted()
+        return difference.sorted()
     }
 
     func issuesForSelectedFilter() -> [Issue] {
@@ -175,11 +173,10 @@ class DataController: ObservableObject {
 //            let tokenPredicate = NSPredicate(format: "ANY tags IN %@", filterTokens)
 //            predicates.append(tokenPredicate)
 //        }
-//        print("but I am in issuesForSelectedFilter right?")
+
         if filterTokens.isEmpty == false { // AND - all tags
-//            print("is filterTokens ever not empty??")
             for filterToken in filterTokens {
-                let tokenPredicate = NSPredicate(format: "tags CONATINS %@", filterToken)
+                let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
                 predicates.append(tokenPredicate)
             }
         }

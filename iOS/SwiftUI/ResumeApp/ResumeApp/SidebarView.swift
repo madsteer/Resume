@@ -44,7 +44,7 @@ struct SidebarView: View {
                 dataController.deleteAll()
                 dataController.createSampleData()
             } label: {
-                Label("ADD SAMPLES", systemImage: "flame" )
+                Label("ADD SAMPLES", systemImage: "flame")
             }
         }
     }

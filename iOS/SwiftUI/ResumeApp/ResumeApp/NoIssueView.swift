@@ -15,7 +15,7 @@ struct NoIssueView: View {
             .font(.title)
             .foregroundStyle(.secondary)
 
-        Button("new Issue") {
+        Button("New Issue") {
             // make a new issue
         }
     }
