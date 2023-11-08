@@ -17,6 +17,8 @@ struct SidebarView: View {
     @State private var renamingTag = false
     @State private var tagName = ""
 
+    @State private var showingAwards = false
+
     var tagFilters: [Filter] {
         tags.map { tag in
             Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
@@ -51,13 +53,11 @@ struct SidebarView: View {
             }
         }
         .toolbar {
-            #if DEBUG
             Button {
-                dataController.newTag()
+                showingAwards.toggle()
             } label: {
-                Label("Add tag", systemImage: "plus")
+                Label("Show awards", systemImage: "rosette")
             }
-            #endif
 
             Button {
                 dataController.deleteAll()
@@ -65,6 +65,14 @@ struct SidebarView: View {
             } label: {
                 Label("ADD SAMPLES", systemImage: "flame")
             }
+
+            #if DEBUG
+            Button {
+                dataController.newTag()
+            } label: {
+                Label("Add tag", systemImage: "plus")
+            }
+            #endif
         }
         .alert("Rename tag", isPresented: $renamingTag) {
             Button {
@@ -77,6 +85,7 @@ struct SidebarView: View {
 
             TextField("New name", text: $tagName)
         }
+        .sheet(isPresented: $showingAwards, content: AwardsView.init)
     }
 
     func delete(_ offsets: IndexSet) {
