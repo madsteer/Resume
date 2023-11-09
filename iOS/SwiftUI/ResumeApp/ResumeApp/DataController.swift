@@ -102,6 +102,7 @@ class DataController: ObservableObject {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
         }
+        saveTask?.cancel()
     }
 
     func queueSave() {
@@ -199,7 +200,7 @@ class DataController: ObservableObject {
         request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
 
-        return allIssues.sorted()
+        return allIssues
     }
 
     func newTag() {
@@ -223,5 +224,37 @@ class DataController: ObservableObject {
         save()
 
         selectedIssue = issue
+    }
+
+    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+        (try? container.viewContext.count(for: fetchRequest)) ?? 0
+    }
+
+    func hasEarned(award: Award) -> Bool {
+        switch award.criterion {
+        case "issues":
+            // returns true if they added a certain number of issues
+            let fetchRequest = Issue.fetchRequest()
+            let awardCount = count(for: fetchRequest)
+            return awardCount >= award.value
+            
+        case "closed":
+            // returns true if they closed a certain number of issues
+            let fetchRequest = Issue.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "completed = true")
+            let awardCount = count(for: fetchRequest)
+            return awardCount >= award.value
+
+        case "tags":
+            // return true if they created a certain number of tags
+            let fetchRequest = Tag.fetchRequest()
+            let awardCount = count(for: fetchRequest)
+            return awardCount >= award.value
+
+        default:
+            // an unknown award criterion; this should never be allowed
+            // fatalError("Unknown award criterion: \(award.criterion)")
+            return false
+        }
     }
 }
