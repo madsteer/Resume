@@ -13,8 +13,6 @@
 		7DA45BAC2AEDAB60004C0657 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA45BAB2AEDAB60004C0657 /* Preview Assets.xcassets */; };
 		7DA45BB42AEEEBC3004C0657 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7DA45BB22AEEEBC3004C0657 /* Main.xcdatamodeld */; };
 		7DA45BB62AEEEE8A004C0657 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA45BB52AEEEE8A004C0657 /* DataController.swift */; };
-<<<<<<< HEAD
-=======
 		8B1959E12AF59947007FCE95 /* IssueRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1959E02AF59947007FCE95 /* IssueRowView.swift */; };
 		8B1959E32AF5DD18007FCE95 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1959E22AF5DD18007FCE95 /* IssueView.swift */; };
 		8B1959E52AF5DD24007FCE95 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1959E42AF5DD24007FCE95 /* NoIssueView.swift */; };
@@ -28,7 +26,6 @@
 		8BF2BC952AF1B9D600307FC3 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC942AF1B9D600307FC3 /* Filter.swift */; };
 		8BF2BC972AF360CF00307FC3 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC962AF360CF00307FC3 /* Issue-CoreDataHelpers.swift */; };
 		8BF2BC992AF3625500307FC3 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC982AF3625500307FC3 /* Tag-CoreDataHelpers.swift */; };
->>>>>>> swiftuiResumeApp
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +37,6 @@
 		7DA45BAB2AEDAB60004C0657 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7DA45BB32AEEEBC3004C0657 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		7DA45BB52AEEEE8A004C0657 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
 		8B1959E02AF59947007FCE95 /* IssueRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowView.swift; sourceTree = "<group>"; };
 		8B1959E22AF5DD18007FCE95 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 		8B1959E42AF5DD24007FCE95 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
@@ -56,7 +51,6 @@
 		8BF2BC942AF1B9D600307FC3 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		8BF2BC962AF360CF00307FC3 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		8BF2BC982AF3625500307FC3 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
->>>>>>> swiftuiResumeApp
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +83,6 @@
 		7DA45BA22AEDAB5F004C0657 /* ResumeApp */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				7DA45BA32AEDAB5F004C0657 /* ResumeAppApp.swift */,
-				7DA45BA52AEDAB5F004C0657 /* ContentView.swift */,
-				7DA45BB52AEEEE8A004C0657 /* DataController.swift */,
-				7DA45BB22AEEEBC3004C0657 /* Main.xcdatamodeld */,
-=======
 				8BF2BC8F2AF06DA800307FC3 /* Info.plist */,
 				7DA45BA32AEDAB5F004C0657 /* ResumeAppApp.swift */,
 				8BF2BC902AF1B48400307FC3 /* SidebarView.swift */,
@@ -113,7 +101,6 @@
 				7DA45BB22AEEEBC3004C0657 /* Main.xcdatamodeld */,
 				8B4157C92AFB3E2D009E2907 /* Awards.json */,
 				8B4157C82AFB3E2D009E2907 /* Colors.xcassets */,
->>>>>>> swiftuiResumeApp
 				7DA45BA72AEDAB60004C0657 /* Assets.xcassets */,
 				7DA45BA92AEDAB60004C0657 /* ResumeApp.entitlements */,
 				7DA45BAA2AEDAB60004C0657 /* Preview Content */,
@@ -187,11 +174,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-=======
 				8B4157CA2AFB3E2D009E2907 /* Colors.xcassets in Resources */,
 				8B4157CB2AFB3E2D009E2907 /* Awards.json in Resources */,
->>>>>>> swiftuiResumeApp
 				7DA45BAC2AEDAB60004C0657 /* Preview Assets.xcassets in Resources */,
 				7DA45BA82AEDAB60004C0657 /* Assets.xcassets in Resources */,
 			);
@@ -204,10 +188,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-				7DA45BB42AEEEBC3004C0657 /* Main.xcdatamodeld in Sources */,
-				7DA45BB62AEEEE8A004C0657 /* DataController.swift in Sources */,
-=======
 				8BF2BC952AF1B9D600307FC3 /* Filter.swift in Sources */,
 				8B4157CD2AFB3EE6009E2907 /* Award.swift in Sources */,
 				8B4157CF2AFB3FB5009E2907 /* AwardsView.swift in Sources */,
@@ -221,7 +201,6 @@
 				8BF2BC912AF1B48400307FC3 /* SidebarView.swift in Sources */,
 				8B1959E32AF5DD18007FCE95 /* IssueView.swift in Sources */,
 				8B1959E52AF5DD24007FCE95 /* NoIssueView.swift in Sources */,
->>>>>>> swiftuiResumeApp
 				7DA45BA62AEDAB5F004C0657 /* ContentView.swift in Sources */,
 				7DA45BA42AEDAB5F004C0657 /* ResumeAppApp.swift in Sources */,
 			);
@@ -282,13 +261,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-<<<<<<< HEAD
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-=======
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
->>>>>>> swiftuiResumeApp
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -343,13 +318,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-<<<<<<< HEAD
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-=======
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
->>>>>>> swiftuiResumeApp
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -365,15 +336,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ResumeApp/Preview Content\"";
-<<<<<<< HEAD
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-=======
 				DEVELOPMENT_TEAM = ZC2YBFUZ2C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ResumeApp/Info.plist;
->>>>>>> swiftuiResumeApp
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -384,17 +350,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-<<<<<<< HEAD
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-=======
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
->>>>>>> swiftuiResumeApp
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madsteer.ResumeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -415,15 +374,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ResumeApp/Preview Content\"";
-<<<<<<< HEAD
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-=======
 				DEVELOPMENT_TEAM = ZC2YBFUZ2C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ResumeApp/Info.plist;
->>>>>>> swiftuiResumeApp
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -434,17 +388,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-<<<<<<< HEAD
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-=======
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
->>>>>>> swiftuiResumeApp
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madsteer.ResumeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

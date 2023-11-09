@@ -9,15 +9,6 @@ import SwiftUI
 
 @main
 struct ResumeAppApp: App {
-<<<<<<< HEAD
-    @State var dataController = DataController()
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
-=======
     @StateObject var dataController = DataController()
     @Environment(\.scenePhase) var scenePhase
 
@@ -37,7 +28,6 @@ struct ResumeAppApp: App {
                     dataController.save()
                 }
             }
->>>>>>> swiftuiResumeApp
         }
     }
 }

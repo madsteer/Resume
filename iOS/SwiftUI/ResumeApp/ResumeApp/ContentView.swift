@@ -8,16 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-<<<<<<< HEAD
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-=======
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
@@ -90,7 +80,6 @@ struct ContentView: View {
             let item = issues[offset]
             dataController.delete(item)
         }
->>>>>>> swiftuiResumeApp
     }
 }
 

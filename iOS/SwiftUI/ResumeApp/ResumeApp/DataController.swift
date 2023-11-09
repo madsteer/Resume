@@ -6,12 +6,7 @@
 //
 
 import CoreData
-
-<<<<<<< HEAD
-class DataController: ObservableObject {
-    let container: NSPersistentCloudKitContainer
     
-=======
 enum SortType: String {
     case dateCreated = "creationDate"
     case dateModified = "modificationDate"
@@ -38,15 +33,11 @@ class DataController: ObservableObject {
 
     private var saveTask: Task<Void, Error>?
 
->>>>>>> swiftuiResumeApp
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         dataController.createSampleData()
         return dataController
     }()
-<<<<<<< HEAD
-    
-=======
 
     var suggestedFilterTokens: [Tag] {
         guard filterText.starts(with: "#") else { return [] }
@@ -61,16 +52,12 @@ class DataController: ObservableObject {
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
 
->>>>>>> swiftuiResumeApp
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
         
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
-<<<<<<< HEAD
-        
-=======
 
         container.viewContext.automaticallyMergesChangesFromParent = true // for cloudkit
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
@@ -78,7 +65,6 @@ class DataController: ObservableObject {
         container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey) // announce when changes are happening
         NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanged)
 
->>>>>>> swiftuiResumeApp
         container.loadPersistentStores { storeDescription, error in
             if let error {
                 fatalError("Fatal error loading data store: \(error.localizedDescription)")
@@ -86,13 +72,10 @@ class DataController: ObservableObject {
         }
     }
     
-<<<<<<< HEAD
-=======
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
 
->>>>>>> swiftuiResumeApp
     func createSampleData() {
         let viewContext = container.viewContext
         
@@ -119,10 +102,7 @@ class DataController: ObservableObject {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
         }
-<<<<<<< HEAD
-    }
-    
-=======
+
         saveTask?.cancel()
     }
 
@@ -135,7 +115,6 @@ class DataController: ObservableObject {
         }
     }
 
->>>>>>> swiftuiResumeApp
     func delete(_ object: NSManagedObject) {
         objectWillChange.send()
         container.viewContext.delete(object)
@@ -161,8 +140,6 @@ class DataController: ObservableObject {
         
         save()
     }
-<<<<<<< HEAD
-=======
 
     func missingTags(from issue: Issue) -> [Tag] {
         let request = Tag.fetchRequest()
@@ -281,5 +258,4 @@ class DataController: ObservableObject {
             return false
         }
     }
->>>>>>> swiftuiResumeApp
 }
