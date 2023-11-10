@@ -44,7 +44,11 @@ extension Issue {
     var issueStatus: String {
         return (completed) ? "Closed" : "Open"
     }
-    
+
+    var issueFormattedCreationDate: String {
+        issueCreationDate.formatted(date: .numeric, time: .omitted)
+    }
+
     static var example: Issue {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
