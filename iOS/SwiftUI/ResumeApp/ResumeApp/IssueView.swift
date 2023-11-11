@@ -18,6 +18,7 @@ struct IssueView: View {
                     TextField("Title", text: $issue.issueTitle, prompt: Text("Enter the issue title here"))
                         .font(.title)
 
+                    // swiftlint:disable:next line_length
                     Text("**Modified:** \(issue.issueModificationDate.formatted(date: .long, time: .shortened))") // **Modified** is Markdown bold
                         .foregroundStyle(.secondary)
 
@@ -40,7 +41,10 @@ struct IssueView: View {
                         .font(.title2)
                         .foregroundStyle(.secondary)
 
-                    TextField("Description", text: $issue.issueContent, prompt: Text("Enter the issue description here"), axis: .vertical)
+                    TextField("Description",
+                              text: $issue.issueContent,
+                              prompt: Text("Enter the issue description here"),
+                              axis: .vertical)
                 }
             }
         }

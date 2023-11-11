@@ -39,11 +39,9 @@ struct UserFilterRowView: View {
 var allFilters: [Filter] = [.all]
 var tagFilters: [Filter] {
     var taggedFilters = [Filter]()
-    for (index, e) in allFilters.enumerated() {
-        if index % 2 == 0 {
-            let f = Filter(id: e.id, name: e.name, icon: e.icon, tag: .example)
-            taggedFilters.append(f)
-        }
+    for (index, element) in allFilters.enumerated() where index % 2 == 0 {
+        let filter = Filter(id: element.id, name: element.name, icon: element.icon, tag: .example)
+        taggedFilters.append(filter)
     }
     return taggedFilters
 }
