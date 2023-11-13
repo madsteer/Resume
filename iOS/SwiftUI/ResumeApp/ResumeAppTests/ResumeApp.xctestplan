@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "49A9B211-C4F1-4B91-8153-8C777954BF70",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ResumeApp.xcodeproj",
+      "identifier" : "7DA45B9F2AEDAB5F004C0657",
+      "name" : "ResumeApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ResumeApp.xcodeproj",
+        "identifier" : "8B4157F92B02C09C009E2907",
+        "name" : "ResumeAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
