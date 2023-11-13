@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+/// Application to show off my SwiftUI skills
 struct ResumeAppApp: App {
     @StateObject var dataController = DataController()
     @Environment(\.scenePhase) var scenePhase

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide tag detail for a selected issue
 struct TagsMenuView: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var issue: Issue

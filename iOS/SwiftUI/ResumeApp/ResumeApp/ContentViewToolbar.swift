@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the view for the filter's content list's toolbar menu
 struct ContentViewToolbar: View {
     @EnvironmentObject var dataController: DataController
 

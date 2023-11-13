@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the SwiftUI components for the SidebarVIew's user filter rows
 struct UserFilterRowView: View {
     var filter: Filter
     var rename: (Filter) -> Void

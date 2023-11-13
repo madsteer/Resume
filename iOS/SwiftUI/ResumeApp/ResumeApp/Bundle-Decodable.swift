@@ -8,6 +8,13 @@
 import Foundation
 
 extension Bundle {
+    /// A generic method for decoding a file of JSON data
+    /// - Parameters:
+    ///   - file: The name of the JSON file
+    ///   - type: The type of object that the data parses into
+    ///   - dateDecodingStrategy: An optional strategy for decoding the data.  The default is .deferredToDate
+    ///   - keyDecodingStrategy: An optional strategy for decoding keys. The default is .useDefaultKeys
+    /// - Returns: Parsed data into a Swift type
     func decode<T: Decodable>(
         _ file: String,
         as type: T.Type = T.self,

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A description of a prize that can be awarded if the user meets the criiteria
 struct Award: Decodable, Identifiable {
     var id: String { name }
     var name: String

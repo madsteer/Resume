@@ -8,29 +8,35 @@
 import Foundation
 
 extension Issue {
+    /// Non-optional representation of an issue's title
     var issueTitle: String {
         get { title ?? "" }
         set { title = newValue }
     }
 
+    /// Non-optional representation of an issue's content
     var issueContent: String {
         get { content ?? "" }
         set { content = newValue }
     }
 
+    /// Non-optional representation of an issue's creation date
     var issueCreationDate: Date {
         creationDate ?? .now
     }
 
+    /// Non-optional representation of an issue's modification date
     var issueModificationDate: Date {
         modificationDate ?? .now
     }
 
+    /// A sorted, non-optional representation of an issue's tags
     var issueTags: [Tag] {
         let result = tags?.allObjects as? [Tag] ?? []
         return result.sorted()
     }
 
+    /// A sorted, non-optional representation of an issue's tags as a string of text
     var issueTagsList: String {
         guard let tags else { return "No tags" }
 
@@ -41,10 +47,12 @@ extension Issue {
         }
     }
 
+    /// Non-optional representation of an issue's status
     var issueStatus: String {
         return (completed) ? "Closed" : "Open"
     }
 
+    /// A readable text version of an issue's creation date
     var issueFormattedCreationDate: String {
         issueCreationDate.formatted(date: .numeric, time: .omitted)
     }
@@ -64,6 +72,11 @@ extension Issue {
 }
 
 extension Issue: Comparable {
+    /// Compare two issues for equality based on either their title or their creation date
+    /// - Parameters:
+    ///   - lhs: First issue to be compared
+    ///   - rhs: Second issue to be compared
+    /// - Returns: A boolean stating if the left issue is less than the right issue
     public static func <(lhs: Issue, rhs: Issue) -> Bool {
         let left = lhs.issueTitle.localizedLowercase
         let right = rhs.issueTitle.localizedLowercase

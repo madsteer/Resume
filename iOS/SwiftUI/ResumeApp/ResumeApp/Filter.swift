@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Criteria for filtering issue data
 struct Filter: Identifiable, Hashable {
     var id: UUID
     var name: String

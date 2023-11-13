@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Present all award information when the Awards toolbar button is pressed
 struct AwardsView: View {
     @EnvironmentObject var dataController: DataController
 
@@ -46,6 +47,7 @@ struct AwardsView: View {
         }
     }
 
+    /// Determine if an award has been reached by this user or not and return a title accordingly
     var awardTitle: String {
         if dataController.hasEarned(award: selectedAward) {
             return "Unlocked: \(selectedAward.name)"
@@ -54,10 +56,16 @@ struct AwardsView: View {
         }
     }
 
+    /// Determine if an award has been reached by the user or not and return a color accordingly
+    /// - Parameter award: The award needing a color
+    /// - Returns: a Color view representing whether the award has been reached or not
     func color(for award: Award) -> Color {
         dataController.hasEarned(award: award) ? Color(award.color) : .secondary.opacity(0.5)
     }
 
+    /// Determine if an award has been reached by the user or not and return an accessibility label
+    /// - Parameter award: The award needing a label
+    /// - Returns: a localized string key to let the sight challenged user know if the award has been reached or not
     func label(for award: Award) -> LocalizedStringKey {
         "\(dataController.hasEarned(award: award) ? "Unlocked:" : "Locked:") \(award.name)"
     }

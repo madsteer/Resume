@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A simple view to fill the page when no issue is selected and provide a button to create one
 struct NoIssueView: View {
     @EnvironmentObject var dataController: DataController
 

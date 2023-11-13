@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide components for displaying the actual issue in the detail view
 struct IssueView: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var issue: Issue

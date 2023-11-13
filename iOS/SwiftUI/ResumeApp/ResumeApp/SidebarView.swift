@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide view components for the navigation split view's sidebar
 struct SidebarView: View {
     @EnvironmentObject var dataController: DataController
     let smartFilters: [Filter] = [.all, .recent]

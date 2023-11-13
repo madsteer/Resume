@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the SwiftUI components for the SidebarVIew's filter content
 struct ContentView: View {
     @EnvironmentObject var dataController: DataController
 

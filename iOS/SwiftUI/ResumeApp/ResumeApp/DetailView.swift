@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the SwiftUI components for the sidebar view's details or if no issue is selected a view for no issue detail
 struct DetailView: View {
     @EnvironmentObject var dataController: DataController
 

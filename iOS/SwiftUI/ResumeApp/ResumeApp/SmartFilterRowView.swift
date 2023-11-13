@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the SwiftUI components for the SidebarVIew's smart filter rows
 struct SmartFilterRowView: View {
     var filter: Filter
 

@@ -7,16 +7,22 @@
 
 import CoreData
 
+/// Different ways to sort issues for viewing
 enum SortType: String {
     case dateCreated = "creationDate"
     case dateModified = "modificationDate"
 }
 
+/// Various states during the lifecycle of an issue
 enum Status {
     case all, open, closed
 }
 
+/// An environment singleton that manages the application's Core Data stack, including handling saving,
+/// counting fetch requests, tracking orders, and dealing with sample data
 class DataController: ObservableObject {
+
+    /// The single CloudKit container used to store all our data
     let container: NSPersistentCloudKitContainer
 
     @Published var selectedFilter: Filter? = Filter.all
@@ -39,6 +45,7 @@ class DataController: ObservableObject {
         return dataController
     }()
 
+    // provide a list of existing tokens the user might want to filter issues by
     var suggestedFilterTokens: [Tag] {
         guard filterText.starts(with: "#") else { return [] }
 
@@ -52,9 +59,16 @@ class DataController: ObservableObject {
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
 
+    /// Initializes a data controller, either in memory (for testing) or on permanent
+    /// storage (for regular application use).
+    ///
+    /// Defaults to permanent storage
+    /// - Parameter inMemory: A flag that tells whether to store data in temporary memory or not
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
 
+        // for testing and previewing purposes we write our data to /dev/null
+        // so our database is destroyed after the app finishes running
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
@@ -62,9 +76,12 @@ class DataController: ObservableObject {
         container.viewContext.automaticallyMergesChangesFromParent = true // for cloudkit
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
+        // make sure to watch iCloud for all changes to be sure we keep our local
+        // UI in sync when a remote change happens
         container.persistentStoreDescriptions.first?.setOption(
             true as NSNumber,
             forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey) // announce when changes are happening
+
         NotificationCenter.default.addObserver(
             forName: .NSPersistentStoreRemoteChange,
             object: container.persistentStoreCoordinator,
@@ -78,10 +95,12 @@ class DataController: ObservableObject {
         }
     }
 
+    /// Helper function for notifying SwiftUI of impending changes
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
 
+    /// Helper function to generate fake data for testing
     func createSampleData() {
         let viewContext = container.viewContext
 
@@ -104,6 +123,9 @@ class DataController: ObservableObject {
         try? viewContext.save()
     }
 
+    /// Persists data to Core Data context if there are changes.  This silently
+    /// ignores any errors caused by saving, but this should be fine because
+    /// all our attributes are optional.
     func save() {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
@@ -112,7 +134,9 @@ class DataController: ObservableObject {
         saveTask?.cancel()
     }
 
+    /// For efficiency reasons, queue a change in the near future so we don't "over save"
     func queueSave() {
+//        if we have recently queued a save, cancel that one before we create a new one
         saveTask?.cancel()
 
         saveTask = Task { @MainActor in
@@ -121,22 +145,30 @@ class DataController: ObservableObject {
         }
     }
 
+    /// Delete an issue from the database
+    /// - Parameter object: An Issue or Tag to be deleted
     func delete(_ object: NSManagedObject) {
         objectWillChange.send()
         container.viewContext.delete(object)
         save()
     }
 
+    /// Performs the actual heavy lifting of deleting multiple objects
+    /// - Parameter fetchRequest: A fetch request result containing the items to delete
     private func delete(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         batchDeleteRequest.resultType = .resultTypeObjectIDs
 
+        // ⚠️ when performing a batch delete we need to make sure we read the
+        // result back and merge the changes from that result back into our live view
+        // context so the two stay in sync
         if let delete = try? container.viewContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
             NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [container.viewContext])
         }
     }
 
+    /// Special delete function to clean out all date before adding more sample data back
     func deleteAll() {
         let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
         delete(request1)
@@ -147,6 +179,9 @@ class DataController: ObservableObject {
         save()
     }
 
+    /// Find all tags not assigned to this issue
+    /// - Parameter issue: The issue for which we are looking for tags not assigned to
+    /// - Returns: An array of tags not assigned to the issue passed in
     func missingTags(from issue: Issue) -> [Tag] {
         let request = Tag.fetchRequest()
         let allTags = (try? container.viewContext.fetch(request)) ?? []
@@ -157,6 +192,9 @@ class DataController: ObservableObject {
         return difference.sorted()
     }
 
+    /// Runs a fetch request with various predicates that filter the user's issues based on
+    /// tag, title, and content text, search tokens, priority, and completion status.
+    /// - Returns: An array of all matching items
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
@@ -213,6 +251,7 @@ class DataController: ObservableObject {
         return allIssues
     }
 
+    /// Builds a new Tag with stock presets for the name
     func newTag() {
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
@@ -221,12 +260,15 @@ class DataController: ObservableObject {
         save()
     }
 
+    /// Builds a new Issue with stock presets for the title, priority, and creation date
     func newIssue() {
         let issue = Issue(context: container.viewContext)
         issue.title = NSLocalizedString("New issue", comment: "Create a new issue")
         issue.creationDate = .now
         issue.priority = 1
 
+        // if we are browsing a user created tag, immediately add this new issue to the tag
+        // otherwise it won't appear in the list of issues they see.
         if let tag = selectedFilter?.tag {
             issue.addToTags(tag)
         }
@@ -236,10 +278,17 @@ class DataController: ObservableObject {
         selectedIssue = issue
     }
 
+    /// Method to let Core Data (sqlite) count how many items fit the search criteria
+    /// so we don't have to spend time and resources counting them in code
+    /// - Parameter fetchRequest: What are we looking for?
+    /// - Returns: An integer count of the number of items we're looking for in our database
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
 
+    /// Determine if the user has earned a particular award yet or not.
+    /// - Parameter award: The award in question
+    /// - Returns: A Boolean answering if has been earned yet or not
     func hasEarned(award: Award) -> Bool {
         switch award.criterion {
         case "issues":

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the SwiftUI components for the SidebarView's toolbar
 struct SidebarViewToolbar: View {
     @EnvironmentObject var dataController: DataController
 

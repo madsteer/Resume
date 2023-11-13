@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the SwiftUI components for each row of the listed issues
 struct IssueRowView: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var issue: Issue

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Provide the view for the Issue view's toolbar menu
 struct IssueViewToolbar: View {
     @EnvironmentObject var dataController: DataController
 
