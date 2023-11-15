@@ -5,37 +5,64 @@
 //  Created by Cory Steers on 11/14/23.
 //
 
+import CoreData
 import XCTest
+@testable import ResumeApp
 
 final class AwardsTests: BaseTestCase {
+    let awards = Award.allAwards
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    func testAwardIDMatchesName() throws {
+        for award in awards {
+            XCTAssertEqual(award.id, award.name, "Awards ID should always match it's name")
+        }
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testNewUserHasNoUnlockedAwards() throws {
+        for award in awards {
+            XCTAssertFalse(dataController.hasEarned(award: award),
+                           "If there are no issues or tags how can \(award.name) be earned?")
+        }
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testCreatingIssuesUnlocksAwards() {
+        let values = [1, 10, 20, 50, 100, 250, 500, 1000]
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        for (count, value) in values.enumerated() {
+            var issues = [Issue]()
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
+            for _ in 0..<value {
+                let issue = Issue(context: managedObjectContext)
+                issues.append(issue)
             }
+
+            let matches = awards.filter { award in
+                award.criterion == "issues" && dataController.hasEarned(award: award)
+            }
+
+            XCTAssertEqual(matches.count, count + 1, "Adding \(value) issues should unlock \(count + 1) awards")
+            dataController.deleteAll()
+        }
+    }
+
+    func testClosingIssuesUnlocksAwards() {
+        let values = [1, 10, 20, 50, 100, 250, 500, 1000]
+
+        for (count, value) in values.enumerated() {
+            var issues = [Issue]()
+
+            for _ in 0..<value {
+                let issue = Issue(context: managedObjectContext)
+                issue.completed = true
+                issues.append(issue)
+            }
+
+            let matches = awards.filter { award in
+                award.criterion == "closed" && dataController.hasEarned(award: award)
+            }
+
+            XCTAssertEqual(matches.count, count + 1, "Completing \(value) issues should unlock \(count + 1) awards")
+            dataController.deleteAll()
         }
     }
 }

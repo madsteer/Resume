@@ -39,6 +39,8 @@ class DataController: ObservableObject {
 
     private var saveTask: Task<Void, Error>?
 
+    // since DataController is a singleton (see static model below) be careful using
+    // this preview var in unit tests
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         dataController.createSampleData()
@@ -59,6 +61,8 @@ class DataController: ObservableObject {
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
 
+    // Never ran into this in actual code execution, but in unit testing kept getting errors
+    // until I created this NSManagedObjectModel here and vvvvvvvvvvvvv
     static let model: NSManagedObjectModel = {
         guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
             fatalError("Failed to locate model file.")
@@ -77,6 +81,7 @@ class DataController: ObservableObject {
     /// Defaults to permanent storage
     /// - Parameter inMemory: A flag that tells whether to store data in temporary memory or not
     init(inMemory: Bool = false) {
+        // ^^^^^^^^^ used the managedObjectModel here in container creation
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
 
         // for testing and previewing purposes we write our data to /dev/null
@@ -304,13 +309,13 @@ class DataController: ObservableObject {
     func hasEarned(award: Award) -> Bool {
         switch award.criterion {
         case "issues":
-            // returns true if they added a certain number of issues
+            // return true if they added a certain number of issues
             let fetchRequest = Issue.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
 
         case "closed":
-            // returns true if they closed a certain number of issues
+            // return true if they closed a certain number of issues
             let fetchRequest = Issue.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "completed = true")
             let awardCount = count(for: fetchRequest)

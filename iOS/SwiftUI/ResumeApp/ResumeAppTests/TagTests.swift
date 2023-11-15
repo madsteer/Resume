@@ -5,37 +5,42 @@
 //  Created by Cory Steers on 11/14/23.
 //
 
+import CoreData
 import XCTest
+@testable import ResumeApp
 
 final class TagTests: BaseTestCase {
+    func testCreatingTagsAndIssues() {
+        let targetCount = 10
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        for _ in 0..<targetCount {
+            let tag = Tag(context: managedObjectContext)
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
+            for _ in 0..<targetCount {
+                let issue = Issue(context: managedObjectContext)
+                tag.addToIssues(issue)
             }
         }
+
+        XCTAssertEqual(dataController.count(for: Tag.fetchRequest()), targetCount,
+                       "There should be \(targetCount) tags.")
+        XCTAssertEqual(dataController.count(for: Issue.fetchRequest()), targetCount * targetCount,
+                       "There should be \(targetCount * targetCount) issues.")
+    }
+
+    func testDeletingTagDoesNotDeleteIssues() throws {
+        dataController.createSampleData()
+
+        let request = NSFetchRequest<Tag>(entityName: "Tag")
+        let tags = try managedObjectContext.fetch(request)
+
+        XCTAssertEqual(tags.count, 5, "Sample data should have 5 tags")
+
+        dataController.delete(tags[0])
+
+        XCTAssertEqual(dataController.count(for: Tag.fetchRequest()), 4,
+                       "After deleting 1 there should still be 4 tags left")
+        XCTAssertEqual(dataController.count(for: Issue.fetchRequest()), 50,
+                       "Deleting a tag should not have deleted any issues")
     }
 }
