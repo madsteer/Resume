@@ -48,7 +48,7 @@ struct AwardsView: View {
     }
 
     /// Determine if an award has been reached by this user or not and return a title accordingly
-    var awardTitle: String {
+    var awardTitle: LocalizedStringKey {
         if dataController.hasEarned(award: selectedAward) {
             return "Unlocked: \(selectedAward.name)"
         } else {

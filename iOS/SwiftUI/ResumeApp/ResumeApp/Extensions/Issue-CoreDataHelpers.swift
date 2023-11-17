@@ -38,10 +38,11 @@ extension Issue {
 
     /// A sorted, non-optional representation of an issue's tags as a string of text
     var issueTagsList: String {
-        guard let tags else { return "No tags" }
+        let localizedNoTags = NSLocalizedString("No tags", comment: "This user has not created any tags yet.")
+        guard let tags else { return localizedNoTags }
 
         if tags.count == 0 {
-            return "No tags"
+            return localizedNoTags
         } else {
             return issueTags.map(\.tagName).formatted()
         }
@@ -49,7 +50,11 @@ extension Issue {
 
     /// Non-optional representation of an issue's status
     var issueStatus: String {
-        return (completed) ? "Closed" : "Open"
+        if completed {
+            return NSLocalizedString("Closed", comment: "This issue has been resolved.")
+        } else {
+            return NSLocalizedString("Open", comment: "This issue is currently not resolved.")
+        }
     }
 
     static var example: Issue {
