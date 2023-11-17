@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import SwiftUI
 
 /// Different ways to sort issues for viewing
 enum SortType: String {
@@ -109,6 +110,13 @@ class DataController: ObservableObject {
             if let error {
                 fatalError("Fatal error loading data store: \(error.localizedDescription)")
             }
+
+            #if DEBUG
+            if CommandLine.arguments.contains("enable-testing") {
+                self.deleteAll()
+                UIView.setAnimationsEnabled(false) // speed up UI Testing
+            }
+            #endif
         }
     }
 

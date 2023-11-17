@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "7FCC90CD-139A-4D4E-85AD-692A45795BB6",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ResumeApp.xcodeproj",
+      "identifier" : "7DA45B9F2AEDAB5F004C0657",
+      "name" : "ResumeApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ResumeApp.xcodeproj",
+        "identifier" : "8BF8EC9D2B070AB200E80A63",
+        "name" : "ResumeAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
