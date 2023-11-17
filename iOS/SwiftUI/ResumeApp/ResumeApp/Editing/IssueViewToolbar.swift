@@ -5,7 +5,7 @@
 //  Created by Cory Steers on 11/10/23.
 //
 
-//import CoreHaptics // Don't need for simple success
+// import CoreHaptics // Don't need for simple success
 import SwiftUI
 
 /// Provide the view for the Issue view's toolbar menu
