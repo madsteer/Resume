@@ -42,7 +42,7 @@ struct IssueRowView: View {
                             .font(.body.smallCaps())
                     }
                 }
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             }
         }
         .accessibilityHint(viewModel.accessibilityHint)
