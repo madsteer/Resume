@@ -16,7 +16,7 @@ struct ResumeAppApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationSplitView {
-                SidebarView()
+                SidebarView(datacontroller: dataController)
             } content: {
                 ContentView()
             } detail: {

@@ -92,9 +92,7 @@ final class ResumeAppUITests: XCTestCase {
         app.buttons["Show awards"].tap()
 
         for award in app.scrollViews.buttons.allElementsBoundByIndex {
-            if #available(iOS 17.0.0, *) {
-                // nothing
-            } else {
+            if #unavailable(iOS 17.0.0) {
                 if app.windows.element.frame.contains(award.frame) == false {
                     app.swipeUp()
                 }

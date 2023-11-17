@@ -13,6 +13,7 @@
 		7DA45BAC2AEDAB60004C0657 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA45BAB2AEDAB60004C0657 /* Preview Assets.xcassets */; };
 		7DA45BB42AEEEBC3004C0657 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7DA45BB22AEEEBC3004C0657 /* Main.xcdatamodeld */; };
 		7DA45BB62AEEEE8A004C0657 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA45BB52AEEEE8A004C0657 /* DataController.swift */; };
+		8B0037AC2B07D0E100EE73F8 /* SideBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0037AB2B07D0E100EE73F8 /* SideBarViewModel.swift */; };
 		8B1959E12AF59947007FCE95 /* IssueRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1959E02AF59947007FCE95 /* IssueRowView.swift */; };
 		8B1959E32AF5DD18007FCE95 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1959E22AF5DD18007FCE95 /* IssueView.swift */; };
 		8B1959E52AF5DD24007FCE95 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1959E42AF5DD24007FCE95 /* NoIssueView.swift */; };
@@ -74,6 +75,7 @@
 		7DA45BB32AEEEBC3004C0657 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		7DA45BB52AEEEE8A004C0657 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		8B0037AA2B07287A00EE73F8 /* ResumeAppUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ResumeAppUITests.xctestplan; sourceTree = "<group>"; };
+		8B0037AB2B07D0E100EE73F8 /* SideBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewModel.swift; sourceTree = "<group>"; };
 		8B1959E02AF59947007FCE95 /* IssueRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowView.swift; sourceTree = "<group>"; };
 		8B1959E22AF5DD18007FCE95 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 		8B1959E42AF5DD24007FCE95 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				8BF2BC942AF1B9D600307FC3 /* Filter.swift */,
 				8BF2BC902AF1B48400307FC3 /* SidebarView.swift */,
+				8B0037AB2B07D0E100EE73F8 /* SideBarViewModel.swift */,
 				8B4157E02AFEC07E009E2907 /* SidebarViewToolbar.swift */,
 				8B4157E82AFEC93B009E2907 /* SmartFilterRowView.swift */,
 				8B4157EA2AFECB4F009E2907 /* UserFilterRowView.swift */,
@@ -460,6 +463,7 @@
 				8B4157CD2AFB3EE6009E2907 /* Award.swift in Sources */,
 				8B4157E32AFEC244009E2907 /* IssueViewToolbar.swift in Sources */,
 				8B4157CF2AFB3FB5009E2907 /* AwardsView.swift in Sources */,
+				8B0037AC2B07D0E100EE73F8 /* SideBarViewModel.swift in Sources */,
 				8B4157EB2AFECB4F009E2907 /* UserFilterRowView.swift in Sources */,
 				8BF2BC992AF3625500307FC3 /* Tag-CoreDataHelpers.swift in Sources */,
 				7DA45BB42AEEEBC3004C0657 /* Main.xcdatamodeld in Sources */,

@@ -10,8 +10,7 @@ import SwiftUI
 /// Provide the SwiftUI components for the SidebarView's toolbar
 struct SidebarViewToolbar: View {
     @EnvironmentObject var dataController: DataController
-
-    @Binding var showingAwards: Bool
+    @State private var showingAwards =  false
 
     var body: some View {
         Button {
@@ -19,6 +18,7 @@ struct SidebarViewToolbar: View {
         } label: {
             Label("Show awards", systemImage: "rosette")
         }
+        .sheet(isPresented: $showingAwards, content: AwardsView.init)
 
         Button {
             dataController.deleteAll()
@@ -41,7 +41,7 @@ struct SidebarViewToolbar: View {
     NavigationView {
         Text("")
             .toolbar {
-                SidebarViewToolbar(showingAwards: .constant(true))
+                SidebarViewToolbar()
                     .environmentObject(DataController(inMemory: true))
             }
     }
