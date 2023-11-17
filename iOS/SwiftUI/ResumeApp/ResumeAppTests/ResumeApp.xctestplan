@@ -9,7 +9,6 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:ResumeApp.xcodeproj",
       "identifier" : "7DA45B9F2AEDAB5F004C0657",

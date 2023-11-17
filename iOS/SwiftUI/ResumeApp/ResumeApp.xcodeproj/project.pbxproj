@@ -42,6 +42,7 @@
 		8BF8EC922B05B16000E80A63 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF8EC912B05B16000E80A63 /* ExtensionTests.swift */; };
 		8BF8EC952B05BE4100E80A63 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BF8EC942B05BE4100E80A63 /* DecodableDictionary.json */; };
 		8BF8EC972B05BE6E00E80A63 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BF8EC962B05BE6E00E80A63 /* DecodableString.json */; };
+		8BF8EC992B06E98A00E80A63 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF8EC982B06E98A00E80A63 /* PerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		8BF8EC912B05B16000E80A63 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		8BF8EC942B05BE4100E80A63 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		8BF8EC962B05BE6E00E80A63 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
+		8BF8EC982B06E98A00E80A63 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				8BF8EC8D2B04626800E80A63 /* AwardsTests.swift */,
 				8BF8EC8F2B04721700E80A63 /* DevelopmentDataTests.swift */,
 				8BF8EC912B05B16000E80A63 /* ExtensionTests.swift */,
+				8BF8EC982B06E98A00E80A63 /* PerformanceTests.swift */,
 				8BF8EC8B2B044A2100E80A63 /* TagTests.swift */,
 			);
 			path = ResumeAppTests;
@@ -418,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF8EC992B06E98A00E80A63 /* PerformanceTests.swift in Sources */,
 				8B4158052B02C394009E2907 /* AssetTests.swift in Sources */,
 				8BF8EC8E2B04626800E80A63 /* AwardsTests.swift in Sources */,
 				8BF8EC8C2B044A2100E80A63 /* TagTests.swift in Sources */,
