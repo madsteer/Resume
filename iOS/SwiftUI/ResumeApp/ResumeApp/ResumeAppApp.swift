@@ -18,7 +18,7 @@ struct ResumeAppApp: App {
             NavigationSplitView {
                 SidebarView(datacontroller: dataController)
             } content: {
-                ContentView()
+                ContentView(dataController: dataController)
             } detail: {
                 DetailView()
             }

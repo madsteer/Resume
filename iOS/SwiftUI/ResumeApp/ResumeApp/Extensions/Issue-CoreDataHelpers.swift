@@ -52,11 +52,6 @@ extension Issue {
         return (completed) ? "Closed" : "Open"
     }
 
-    /// A readable text version of an issue's creation date
-    var issueFormattedCreationDate: String {
-        issueCreationDate.formatted(date: .numeric, time: .omitted)
-    }
-
     static var example: Issue {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext

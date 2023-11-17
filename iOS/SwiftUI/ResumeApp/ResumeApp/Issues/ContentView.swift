@@ -9,35 +9,31 @@ import SwiftUI
 
 /// Provide the SwiftUI components for the SidebarVIew's filter content
 struct ContentView: View {
-    @EnvironmentObject var dataController: DataController
+    @StateObject var viewModel: ViewModel
 
     var body: some View {
-        List(selection: $dataController.selectedIssue) {
-            ForEach(dataController.issuesForSelectedFilter()) { issue in
+        List(selection: $viewModel.dataController.selectedIssue) {
+            ForEach(viewModel.dataController.issuesForSelectedFilter()) { issue in
                 IssueRowView(issue: issue)
             }
-            .onDelete(perform: delete)
+            .onDelete(perform: viewModel.delete)
         }
         .navigationTitle("Issues")
-        .searchable(text: $dataController.filterText,
-                    tokens: $dataController.filterTokens,
-                    suggestedTokens: .constant(dataController.suggestedFilterTokens),
+        .searchable(text: $viewModel.dataController.filterText,
+                    tokens: $viewModel.dataController.filterTokens,
+                    suggestedTokens: .constant(viewModel.dataController.suggestedFilterTokens),
                     prompt: "Filter issues, or type # to add tags") { tag in
             Text(tag.tagName)
         }
         .toolbar { ContentViewToolbar() }
     }
 
-    func delete(_ offsets: IndexSet) {
-        let issues = dataController.issuesForSelectedFilter()
-
-        for offset in offsets {
-            let item = issues[offset]
-            dataController.delete(item)
-        }
+    init(dataController: DataController) {
+        let viewModel = ViewModel(dataController: dataController)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(dataController: .preview)
 }

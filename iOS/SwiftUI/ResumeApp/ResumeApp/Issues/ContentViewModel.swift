@@ -1,0 +1,29 @@
+//
+//  ContentViewModel.swift
+//  ResumeApp
+//
+//  Created by Cory Steers on 11/17/23.
+//
+
+import CoreData
+import Foundation
+import SwiftUI
+
+extension ContentView {
+    class ViewModel: ObservableObject {
+        var dataController: DataController
+
+        init(dataController: DataController) {
+            self.dataController = dataController
+        }
+
+        func delete(_ offsets: IndexSet) {
+            let issues = dataController.issuesForSelectedFilter()
+
+            for offset in offsets {
+                let item = issues[offset]
+                dataController.delete(item)
+            }
+        }
+    }
+}
