@@ -21,11 +21,11 @@ struct IssueRowView: View {
                     .accessibilityIdentifier(viewModel.iconIdentifier)
 
                 VStack(alignment: .leading) {
-                    Text(viewModel.issue.issueTitle)
+                    Text(viewModel.issueTitle)
                         .font(.headline)
                         .lineLimit(1)
 
-                    Text(viewModel.issue.issueTagsList)
+                    Text(viewModel.issueTagsList)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                 }
@@ -37,7 +37,7 @@ struct IssueRowView: View {
                         .accessibilityLabel(viewModel.accessibilityLabel)
                         .font(.subheadline)
 
-                    if viewModel.issue.completed {
+                    if viewModel.completed {
                         Text("CLOSED")
                             .font(.body.smallCaps())
                     }
@@ -47,7 +47,7 @@ struct IssueRowView: View {
         }
         .accessibilityHint(viewModel.accessibilityHint)
         // just for UI testing
-        .accessibilityIdentifier(viewModel.issue.issueTitle)
+        .accessibilityIdentifier(viewModel.issueTitle)
     }
 
     init(issue: Issue) {

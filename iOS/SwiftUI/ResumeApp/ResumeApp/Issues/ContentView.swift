@@ -12,16 +12,16 @@ struct ContentView: View {
     @StateObject var viewModel: ViewModel
 
     var body: some View {
-        List(selection: $viewModel.dataController.selectedIssue) {
+        List(selection: $viewModel.selectedIssue) {
             ForEach(viewModel.dataController.issuesForSelectedFilter()) { issue in
                 IssueRowView(issue: issue)
             }
             .onDelete(perform: viewModel.delete)
         }
         .navigationTitle("Issues")
-        .searchable(text: $viewModel.dataController.filterText,
-                    tokens: $viewModel.dataController.filterTokens,
-                    suggestedTokens: .constant(viewModel.dataController.suggestedFilterTokens),
+        .searchable(text: $viewModel.filterText,
+                    tokens: $viewModel.filterTokens,
+                    suggestedTokens: .constant(viewModel.suggestedFilterTokens),
                     prompt: "Filter issues, or type # to add tags") { tag in
             Text(tag.tagName)
         }

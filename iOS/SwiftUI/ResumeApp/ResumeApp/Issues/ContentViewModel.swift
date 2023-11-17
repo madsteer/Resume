@@ -5,11 +5,10 @@
 //  Created by Cory Steers on 11/17/23.
 //
 
-import CoreData
 import Foundation
-import SwiftUI
 
 extension ContentView {
+    @dynamicMemberLookup
     class ViewModel: ObservableObject {
         var dataController: DataController
 
@@ -24,6 +23,15 @@ extension ContentView {
                 let item = issues[offset]
                 dataController.delete(item)
             }
+        }
+
+        subscript<Value>(dynamicMember keyPath: KeyPath<DataController, Value>) -> Value {
+            dataController[keyPath: keyPath]
+        }
+
+        subscript<Value>(dynamicMember keyPath: ReferenceWritableKeyPath<DataController, Value>) -> Value {
+            get { dataController[keyPath: keyPath] }
+            set { dataController[keyPath: keyPath] = newValue }
         }
     }
 }
