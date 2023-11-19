@@ -26,6 +26,9 @@ class DataController: ObservableObject {
     /// The single CloudKit container used to store all our data
     let container: NSPersistentCloudKitContainer
 
+    /// Delegate to allow us to add data to Spotlight
+    var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
+
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedIssue: Issue?
 
@@ -106,14 +109,26 @@ class DataController: ObservableObject {
             queue: .main,
             using: remoteStoreChanged)
 
-        container.loadPersistentStores { _, error in
+        container.loadPersistentStores { [weak self] _, error in
             if let error {
                 fatalError("Fatal error loading data store: \(error.localizedDescription)")
             }
 
+            // set up code to track changes to issues in Spotlight
+            if let description = self?.container.persistentStoreDescriptions.first {
+                description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
+                if let coordinator = self?.container.persistentStoreCoordinator {
+                    self?.spotlightDelegate = NSCoreDataCoreSpotlightDelegate(forStoreWith: description,
+                                                                              coordinator: coordinator)
+
+                    self?.spotlightDelegate?.startSpotlightIndexing()
+                }
+            }
+
             #if DEBUG
             if CommandLine.arguments.contains("enable-testing") {
-                self.deleteAll()
+                self?.deleteAll()
                 UIView.setAnimationsEnabled(false) // speed up UI Testing
             }
             #endif
@@ -340,5 +355,18 @@ class DataController: ObservableObject {
             // fatalError("Unknown award criterion: \(award.criterion)")
             return false
         }
+    }
+    
+    /// Find an issue from a unique identifier so we can navigate to an issue from a Spotlight search
+    /// - Parameter uniqueIdentifier: the unique identifier of the issue we want to return
+    /// - Returns: the issue represented by the unique identifier passed in
+    func issue(with uniqueIdentifier: String) -> Issue? {
+        guard let url = URL(string: uniqueIdentifier) else { return nil }
+
+        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
+            return nil
+        }
+
+        return try? container.viewContext.existingObject(with: id) as? Issue
     }
 }

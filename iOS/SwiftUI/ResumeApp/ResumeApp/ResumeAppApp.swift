@@ -5,6 +5,7 @@
 //  Created by Cory Steers on 10/28/23.
 //
 
+import CoreSpotlight
 import SwiftUI
 
 @main
@@ -29,6 +30,16 @@ struct ResumeAppApp: App {
                     dataController.save()
                 }
             }
+            .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
+        }
+    }
+
+    /// This method will be called when we're launched from something found in Spotlight
+    /// - Parameter userActivity: The input that spotlight will give us when we're called
+    func loadSpotlightItem(_ userActivity: NSUserActivity) {
+        if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            dataController.selectedIssue = dataController.issue(with: uniqueIdentifier)
+            dataController.selectedFilter = .all
         }
     }
 }
