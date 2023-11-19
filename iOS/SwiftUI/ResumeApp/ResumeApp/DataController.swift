@@ -356,7 +356,7 @@ class DataController: ObservableObject {
             return false
         }
     }
-    
+
     /// Find an issue from a unique identifier so we can navigate to an issue from a Spotlight search
     /// - Parameter uniqueIdentifier: the unique identifier of the issue we want to return
     /// - Returns: the issue represented by the unique identifier passed in

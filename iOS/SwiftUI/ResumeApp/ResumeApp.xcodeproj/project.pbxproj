@@ -34,6 +34,8 @@
 		8B4157EB2AFECB4F009E2907 /* UserFilterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4157EA2AFECB4F009E2907 /* UserFilterRowView.swift */; };
 		8B4157FD2B02C09C009E2907 /* ResumeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4157FC2B02C09C009E2907 /* ResumeAppTests.swift */; };
 		8B4158052B02C394009E2907 /* AssetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4158042B02C394009E2907 /* AssetTests.swift */; };
+		8B41D2A82B099077001BC75B /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41D2A72B099077001BC75B /* DataController-Notifications.swift */; };
+		8B41D2AA2B09BE40001BC75B /* RemindersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41D2A92B09BE40001BC75B /* RemindersTests.swift */; };
 		8BF2BC912AF1B48400307FC3 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC902AF1B48400307FC3 /* SidebarView.swift */; };
 		8BF2BC932AF1B49400307FC3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC922AF1B49400307FC3 /* DetailView.swift */; };
 		8BF2BC952AF1B9D600307FC3 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC942AF1B9D600307FC3 /* Filter.swift */; };
@@ -103,6 +105,8 @@
 		8B4157FC2B02C09C009E2907 /* ResumeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeAppTests.swift; sourceTree = "<group>"; };
 		8B4158032B02C221009E2907 /* ResumeApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ResumeApp.xctestplan; sourceTree = "<group>"; };
 		8B4158042B02C394009E2907 /* AssetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTests.swift; sourceTree = "<group>"; };
+		8B41D2A72B099077001BC75B /* DataController-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Notifications.swift"; sourceTree = "<group>"; };
+		8B41D2A92B09BE40001BC75B /* RemindersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersTests.swift; sourceTree = "<group>"; };
 		8BF2BC8F2AF06DA800307FC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BF2BC902AF1B48400307FC3 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		8BF2BC922AF1B49400307FC3 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			children = (
 				7DA45BA32AEDAB5F004C0657 /* ResumeAppApp.swift */,
 				7DA45BB52AEEEE8A004C0657 /* DataController.swift */,
+				8B41D2A72B099077001BC75B /* DataController-Notifications.swift */,
 				8B4157F22B01E877009E2907 /* Filters */,
 				8B4157F32B01E880009E2907 /* Issues */,
 				8B4157F52B01E899009E2907 /* Editing */,
@@ -280,6 +285,7 @@
 				8BF8EC8F2B04721700E80A63 /* DevelopmentDataTests.swift */,
 				8BF8EC912B05B16000E80A63 /* ExtensionTests.swift */,
 				8BF8EC982B06E98A00E80A63 /* PerformanceTests.swift */,
+				8B41D2A92B09BE40001BC75B /* RemindersTests.swift */,
 				8BF8EC8B2B044A2100E80A63 /* TagTests.swift */,
 			);
 			path = ResumeAppTests;
@@ -470,6 +476,7 @@
 				8B4157E32AFEC244009E2907 /* IssueViewToolbar.swift in Sources */,
 				8B4157CF2AFB3FB5009E2907 /* AwardsView.swift in Sources */,
 				8B0037AC2B07D0E100EE73F8 /* SideBarViewModel.swift in Sources */,
+				8B41D2A82B099077001BC75B /* DataController-Notifications.swift in Sources */,
 				8B4157EB2AFECB4F009E2907 /* UserFilterRowView.swift in Sources */,
 				8BF2BC992AF3625500307FC3 /* Tag-CoreDataHelpers.swift in Sources */,
 				7DA45BB42AEEEBC3004C0657 /* Main.xcdatamodeld in Sources */,
@@ -498,6 +505,7 @@
 				8BF8EC992B06E98A00E80A63 /* PerformanceTests.swift in Sources */,
 				8B4158052B02C394009E2907 /* AssetTests.swift in Sources */,
 				8BF8EC8E2B04626800E80A63 /* AwardsTests.swift in Sources */,
+				8B41D2AA2B09BE40001BC75B /* RemindersTests.swift in Sources */,
 				8BF8EC8C2B044A2100E80A63 /* TagTests.swift in Sources */,
 				8BF8EC922B05B16000E80A63 /* ExtensionTests.swift in Sources */,
 				8B4157FD2B02C09C009E2907 /* ResumeAppTests.swift in Sources */,
@@ -765,7 +773,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madsteer.ResumeAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -784,7 +792,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madsteer.ResumeAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -804,7 +812,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZC2YBFUZ2C;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madsteer.ResumeAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -824,7 +832,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZC2YBFUZ2C;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.madsteer.ResumeAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
