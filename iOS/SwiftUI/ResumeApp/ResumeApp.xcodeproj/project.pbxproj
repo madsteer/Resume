@@ -36,6 +36,7 @@
 		8B4158052B02C394009E2907 /* AssetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4158042B02C394009E2907 /* AssetTests.swift */; };
 		8B41D2A82B099077001BC75B /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41D2A72B099077001BC75B /* DataController-Notifications.swift */; };
 		8B41D2AA2B09BE40001BC75B /* RemindersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41D2A92B09BE40001BC75B /* RemindersTests.swift */; };
+		8B41D2B22B0AD8E3001BC75B /* UnlockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41D2B12B0AD8E3001BC75B /* UnlockManager.swift */; };
 		8BF2BC912AF1B48400307FC3 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC902AF1B48400307FC3 /* SidebarView.swift */; };
 		8BF2BC932AF1B49400307FC3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC922AF1B49400307FC3 /* DetailView.swift */; };
 		8BF2BC952AF1B9D600307FC3 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2BC942AF1B9D600307FC3 /* Filter.swift */; };
@@ -107,6 +108,8 @@
 		8B4158042B02C394009E2907 /* AssetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTests.swift; sourceTree = "<group>"; };
 		8B41D2A72B099077001BC75B /* DataController-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Notifications.swift"; sourceTree = "<group>"; };
 		8B41D2A92B09BE40001BC75B /* RemindersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersTests.swift; sourceTree = "<group>"; };
+		8B41D2B12B0AD8E3001BC75B /* UnlockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockManager.swift; sourceTree = "<group>"; };
+		8B41D2B32B0ADAE8001BC75B /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		8BF2BC8F2AF06DA800307FC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BF2BC902AF1B48400307FC3 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		8BF2BC922AF1B49400307FC3 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				7DA45BA32AEDAB5F004C0657 /* ResumeAppApp.swift */,
 				7DA45BB52AEEEE8A004C0657 /* DataController.swift */,
 				8B41D2A72B099077001BC75B /* DataController-Notifications.swift */,
+				8B41D2B12B0AD8E3001BC75B /* UnlockManager.swift */,
+				8B41D2B32B0ADAE8001BC75B /* Configuration.storekit */,
 				8B4157F22B01E877009E2907 /* Filters */,
 				8B4157F32B01E880009E2907 /* Issues */,
 				8B4157F52B01E899009E2907 /* Editing */,
@@ -475,6 +480,7 @@
 				8B4157CD2AFB3EE6009E2907 /* Award.swift in Sources */,
 				8B4157E32AFEC244009E2907 /* IssueViewToolbar.swift in Sources */,
 				8B4157CF2AFB3FB5009E2907 /* AwardsView.swift in Sources */,
+				8B41D2B22B0AD8E3001BC75B /* UnlockManager.swift in Sources */,
 				8B0037AC2B07D0E100EE73F8 /* SideBarViewModel.swift in Sources */,
 				8B41D2A82B099077001BC75B /* DataController-Notifications.swift in Sources */,
 				8B4157EB2AFECB4F009E2907 /* UserFilterRowView.swift in Sources */,

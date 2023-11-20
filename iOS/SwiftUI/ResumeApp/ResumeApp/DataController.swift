@@ -26,6 +26,20 @@ class DataController: ObservableObject {
     /// The single CloudKit container used to store all our data
     let container: NSPersistentCloudKitContainer
 
+    /// The UserDefaults suite where w'ere saving our data
+    let defaults: UserDefaults
+
+    /// Loads and saves whether or not our premium unlock has been purchased.
+    var fullVersionUnlocked: Bool {
+        get {
+            defaults.bool(forKey: "fullVersionUnlocked")
+        }
+
+        set {
+            defaults.set(newValue, forKey: "fullVersionUnlocked")
+        }
+    }
+
     /// Delegate to allow us to add data to Spotlight
     var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
 
@@ -84,7 +98,10 @@ class DataController: ObservableObject {
     ///
     /// Defaults to permanent storage
     /// - Parameter inMemory: A flag that tells whether to store data in temporary memory or not
-    init(inMemory: Bool = false) {
+    /// - Parameter defaults: The UserDefaults suite where user data should be stored
+    init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+
         // ^^^^^^^^^ used the managedObjectModel here in container creation
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
 

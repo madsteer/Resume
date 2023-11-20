@@ -11,8 +11,17 @@ import SwiftUI
 @main
 /// Application to show off my SwiftUI skills
 struct ResumeAppApp: App {
-    @StateObject var dataController = DataController()
+    @StateObject var dataController: DataController
+    @StateObject var unlockManager: UnlockManager
     @Environment(\.scenePhase) var scenePhase
+
+    init() {
+        let dataController = DataController()
+        let unlockManager = UnlockManager(dataController: dataController)
+
+        _dataController = StateObject(wrappedValue: dataController)
+        _unlockManager = StateObject(wrappedValue: unlockManager)
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -25,6 +34,7 @@ struct ResumeAppApp: App {
             }
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
+            .environmentObject(unlockManager)
             .onChange(of: scenePhase) { phase in
                 if phase != .active {
                     dataController.save()
