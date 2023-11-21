@@ -26,6 +26,9 @@ struct ContentView: View {
             Text(tag.tagName)
         }
         .toolbar { ContentViewToolbar() }
+        .sheet(isPresented: $viewModel.showingUnlockView) {
+            UnlockView()
+        }
     }
 
     init(dataController: DataController) {

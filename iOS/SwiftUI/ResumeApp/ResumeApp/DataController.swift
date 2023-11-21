@@ -4,8 +4,10 @@
 //
 //  Created by Cory Steers on 10/29/23.
 //
+// swiftlint:disable file_length
 
 import CoreData
+import StoreKit
 import SwiftUI
 
 /// Different ways to sort issues for viewing
@@ -54,6 +56,8 @@ class DataController: ObservableObject {
     @Published var filterStatus = Status.all
     @Published var sortType = SortType.dateCreated
     @Published var sortNewestFirst = true
+
+    @Published var showingUnlockView = false
 
     private var saveTask: Task<Void, Error>?
 
@@ -385,5 +389,17 @@ class DataController: ObservableObject {
         }
 
         return try? container.viewContext.existingObject(with: id) as? Issue
+    }
+
+    /// Determine if we want to request a review of the application at the time the application is launched
+    func appLaunched() {
+        guard count(for: Issue.fetchRequest()) >= 5 else { return }
+
+        let allScenes = UIApplication.shared.connectedScenes
+        let scene = allScenes.first { $0.activationState == .foregroundActive }
+
+        if let windowScene = scene as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: windowScene)
+        }
     }
 }

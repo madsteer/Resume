@@ -53,10 +53,23 @@ struct ContentViewToolbar: View {
                 .symbolVariant(dataController.filterEnabled ? .fill : .none)
         }
 
-        Button(action: dataController.newIssue) {
+        Button(action: addIssue) {
             Label("New Issue", systemImage: "square.and.pencil")
         }
     }
+
+    // determine if the user is allowed to add an issue or if they
+    // need to purchase the unlock subscription
+    func addIssue() {
+        let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Issue.fetchRequest()) < 3
+
+        if canCreate {
+            dataController.newIssue()
+        } else {
+            dataController.showingUnlockView.toggle()
+        }
+    }
+
 }
 
 #Preview {

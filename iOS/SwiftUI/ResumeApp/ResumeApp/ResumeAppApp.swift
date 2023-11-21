@@ -29,6 +29,7 @@ struct ResumeAppApp: App {
                 SidebarView(datacontroller: dataController)
             } content: {
                 ContentView(dataController: dataController)
+                    .onAppear(perform: dataController.appLaunched)
             } detail: {
                 DetailView()
             }

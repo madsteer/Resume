@@ -8,7 +8,10 @@
 import Combine
 import StoreKit
 
+/// An environment singleton to handle all aspects of in-app purchases for the application
 class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
+
+    /// Various states that an in-app purchase can be in.
     enum RequestState {
         case loading
         case loaded(SKProduct)
@@ -17,6 +20,7 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
         case deferred
     }
 
+    /// Types of in-app purchase errors we want to track
     private enum StoreError: Error {
         case invalidIdentifiers, missingProduct
     }
@@ -31,9 +35,12 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
         SKPaymentQueue.canMakePayments()
     }
 
+    /// Initializes an unlock manager for the app to use for in-app purchase.
+    /// - Parameter dataController: The dataController singleton it will need for certain backend concerns
     init(dataController: DataController) {
         self.dataController = dataController
 
+        // the productID needs to match what is configured in the storekit config
         let productIDs = Set(["com.madsteer.ResumeApp.unlock"])
         request = SKProductsRequest(productIdentifiers: productIDs)
 
@@ -52,6 +59,10 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
         SKPaymentQueue.default().remove(self)
     }
 
+    /// Receive payment requests from the Apple payment queue and process them
+    /// - Parameters:
+    ///   - queue: an SKPaymentQueue that the transactions are in.
+    ///   - transactions: an array of SKPaymentTransactions from Apple
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         DispatchQueue.main.async { [self] in
             for transaction in transactions {
@@ -79,6 +90,10 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
         }
     }
 
+    /// After SKProductsRequest finishes successfully to process the products purchased
+    /// - Parameters:
+    ///   - request: SKProductRequest
+    ///   - response: SKProductsResponse containing either success or error information
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         DispatchQueue.main.async {
             self.loadedProducts = response.products
@@ -98,11 +113,14 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
         }
     }
 
+    /// Tell Apple the user wants to purchase a product
+    /// - Parameter product: The SKProduct they want to purchase
     func buy(product: SKProduct) {
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
     }
 
+    /// Restore previous purchases from another device
     func restore() {
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
