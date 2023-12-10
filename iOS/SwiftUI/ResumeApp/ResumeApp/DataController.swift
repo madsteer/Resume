@@ -28,19 +28,8 @@ class DataController: ObservableObject {
     /// The single CloudKit container used to store all our data
     let container: NSPersistentCloudKitContainer
 
-    /// The UserDefaults suite where w'ere saving our data
+    /// The UserDefaults suite where we're saving user data.
     let defaults: UserDefaults
-
-    /// Loads and saves whether or not our premium unlock has been purchased.
-    var fullVersionUnlocked: Bool {
-        get {
-            defaults.bool(forKey: "fullVersionUnlocked")
-        }
-
-        set {
-            defaults.set(newValue, forKey: "fullVersionUnlocked")
-        }
-    }
 
     /// Delegate to allow us to add data to Spotlight
     var spotlightDelegate: NSCoreDataCoreSpotlightDelegate?
@@ -60,6 +49,10 @@ class DataController: ObservableObject {
     @Published var showingUnlockView = false
 
     private var saveTask: Task<Void, Error>?
+    private var storeTask: Task<Void, Never>?
+
+    /// The StoreKit products we've loaded for the store.
+    @Published var products = [Product]()
 
     // since DataController is a singleton (see static model below) be careful using
     // this preview var in unit tests
@@ -102,12 +95,15 @@ class DataController: ObservableObject {
     ///
     /// Defaults to permanent storage
     /// - Parameter inMemory: A flag that tells whether to store data in temporary memory or not
-    /// - Parameter defaults: The UserDefaults suite where user data should be stored
     init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
         self.defaults = defaults
 
         // ^^^^^^^^^ used the managedObjectModel here in container creation
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
+
+        storeTask = Task {
+            await monitorTransactions()
+        }
 
         // for testing and previewing purposes we write our data to /dev/null
         // so our database is destroyed after the app finishes running
@@ -313,12 +309,23 @@ class DataController: ObservableObject {
     }
 
     /// Builds a new Tag with stock presets for the name
-    func newTag() {
+    func newTag() -> Bool {
+        var shouldCreate = fullVersionUnlocked
+
+        if shouldCreate == false {
+            // check how many tags we currently have
+            shouldCreate = count(for: Tag.fetchRequest()) < 3
+        }
+
+        guard shouldCreate else { return false }
+
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
         tag.name = NSLocalizedString("New tag", comment: "Create a new tag")
 
         save()
+
+        return true
     }
 
     /// Builds a new Issue with stock presets for the title, priority, and creation date
@@ -370,6 +377,9 @@ class DataController: ObservableObject {
             let fetchRequest = Tag.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
+
+        case "unlock":
+            return fullVersionUnlocked
 
         default:
             // an unknown award criterion; this should never be allowed
