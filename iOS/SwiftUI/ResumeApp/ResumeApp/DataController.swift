@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import StoreKit
 import SwiftUI
 
 /// Different ways to sort issues for viewing
@@ -46,6 +47,9 @@ class DataController: ObservableObject {
 
     private var saveTask: Task<Void, Error>?
     private var storeTask: Task<Void, Never>?
+
+    /// The StoreKit products we've loaded for the store.
+    @Published var products = [Product]()
 
     // since DataController is a singleton (see static model below) be careful using
     // this preview var in unit tests
@@ -370,6 +374,9 @@ class DataController: ObservableObject {
             let fetchRequest = Tag.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
+
+        case "unlock":
+            return fullVersionUnlocked
 
         default:
             // an unknown award criterion; this should never be allowed
